@@ -1,10 +1,11 @@
 use log::error;
 use minecraft::Application;
 
-fn main() {
+#[tokio::main]
+async fn main() {
     env_logger::init();
 
-    if let Err(e) = Application::new().and_then(|app| app.run()) {
+    if let Err(e) = Application::new().await.and_then(|app| app.run()) {
         error!("{e}");
         std::process::exit(1);
     }
